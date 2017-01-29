@@ -5,12 +5,12 @@ class pcircle
 {
 	public:
 	pcircle(double x, double y, double radius);
-	void setPnt(double x, double y);
 	bool ptInCircle(double x, double y);
 	bool ptOnBoundary(double x, double y);
-	double dFM();
+	double dFM(double x, double y);
 
 	private:
+	void setPnt(double x, double y);
 	double origin_x, origin_y, point_x, point_y, rad;
 };
 
@@ -54,8 +54,9 @@ void pcircle::setPnt(double x, double y)
 	point_y = y - origin_y;
 }
 
-double pcircle::dFM()
+double pcircle::dFM(double x, double y)
 {
+	setPnt(x, y);
 	return sqrt((point_x*point_x)+(point_y*point_y));
 }
 
@@ -64,5 +65,7 @@ int main(int argc, char ** argv)
 {
 	pcircle bobby(32, 95, 12);
 	cout << true << " If is in circle: " << bobby.ptInCircle(12, 93) << endl;
-	cout << "Dist from circle center = " << bobby.dFM() << endl;
+	cout << "Dist from circle center = " << bobby.dFM(12, 93) << endl;
+	cout << true << " If is in circle: " << bobby.ptInCircle(30, 86) << endl;
+	cout << "Dist from circle center = " << bobby.dFM(30, 86) << endl;
 }
